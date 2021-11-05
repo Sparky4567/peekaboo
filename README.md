@@ -57,7 +57,7 @@ SHELL=/bin/bash
 
 ... Delete the two databases completely, change your username and password in config.py,
 start the venv and visit /ini path once. That is how the databases will recreate.
-You will loose the information store there, but you will regain the access and everything
+You will loose the information stored there, but you will regain the access and everything
 will work again as expected.
 
 # Cloudflare middleware
