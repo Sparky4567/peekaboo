@@ -5,14 +5,14 @@ from config import base_name
 from config import admin_base_name
 from config import peekaboo_admin
 from config import peekaboo_password
-
+from config import db_prefix
 create_table_api = Blueprint("create_table_api", __name__)
 
 @create_table_api.route("/ini")
 def start_function():
     peekadmin = peekaboo_admin
     peekpassword = peekaboo_password
-    conn = sqlite3.connect(base_name) 
+    conn = sqlite3.connect(base_name+db_prefix) 
     c = conn.cursor()
     query = """CREATE TABLE IF NOT EXISTS {} (
     id integer PRIMARY KEY AUTOINCREMENT,
@@ -21,7 +21,7 @@ def start_function():
     );""".format(base_name)
     c.execute(query)
     conn.close()
-    adminconn = sqlite3.connect(admin_base_name)
+    adminconn = sqlite3.connect(admin_base_name+db_prefix)
     d = adminconn.cursor()
     query = """CREATE TABLE IF NOT EXISTS {} (
     id integer PRIMARY KEY AUTOINCREMENT,

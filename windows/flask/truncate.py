@@ -1,6 +1,7 @@
 import flask
 from config import admin_base_name
 from config import base_name
+from config import db_prefix
 import json
 import sqlite3
 import basicauth
@@ -11,14 +12,14 @@ def truncate_function():
     headers = flask.request.headers
     auth_string =  headers.get("Authorization")
     if(auth_string is not None):
-        auth_conn = sqlite3.connect(admin_base_name)
+        auth_conn = sqlite3.connect(admin_base_name+db_prefix)
         sel = auth_conn.cursor()
         query = "SELECT * FROM {}".format(admin_base_name)
         sel.execute(query)
         row = sel.fetchone()
         base_auth= basicauth.encode(row[1],row[2])
         if(auth_string==base_auth):
-            truncate_conn = sqlite3.connect(base_name)
+            truncate_conn = sqlite3.connect(base_name+db_prefix)
             sel = truncate_conn.cursor()
             query = "DELETE FROM {}".format(base_name)
             sel.execute(query)

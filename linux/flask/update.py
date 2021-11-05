@@ -12,6 +12,7 @@ from config import admin_base_name
 from config import peek_prefix
 from config import peekaboo_agent
 from config import webdriver_path
+from config import db_prefix
 
 create_update_api = flask.Blueprint("create_update_api", __name__)
 
@@ -20,7 +21,7 @@ def get_url():
     headers = flask.request.headers
     auth_string =  headers.get("Authorization")
     if(auth_string is not None):
-        auth_conn = sqlite3.connect(admin_base_name)
+        auth_conn = sqlite3.connect(admin_base_name+db_prefix)
         sel = auth_conn.cursor()
         query = "SELECT * FROM {}".format(admin_base_name)
         sel.execute(query)
@@ -30,7 +31,7 @@ def get_url():
             prefix = peek_prefix
             passed_url = headers.get("Check-Url").replace(prefix,"").strip()
             if(passed_url is not None):
-                data_conn = sqlite3.connect(base_name)
+                data_conn = sqlite3.connect(base_name+db_prefix)
                 sel = data_conn.cursor()
                 query = "SELECT * FROM {} WHERE urlaskey = '{}'".format(str(base_name),passed_url)
                 sel.execute(query)
@@ -53,7 +54,7 @@ def get_url():
                         passed_url = prefix+passed_url
                         driver.get(passed_url)
                         time.sleep(3)
-                        insert_conn = sqlite3.connect(base_name)
+                        insert_conn = sqlite3.connect(base_name+db_prefix)
                         sel = insert_conn.cursor()
                         content = driver.page_source
                         soup = BeautifulSoup(content, 'html.parser')
