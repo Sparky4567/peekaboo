@@ -1,6 +1,6 @@
 from chromedriver_py import binary_path
-base_name="datastore"
-admin_base_name="admintable"
+base_name="datastore.db"
+admin_base_name="admintable.db"
 peek_prefix="https://"
 peekaboo_admin="test"
 peekaboo_password="test"
