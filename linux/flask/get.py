@@ -73,7 +73,6 @@ def get_url():
                     sel = get_info_conn.cursor()
                     query = ("SELECT * FROM {} WHERE urlaskey = '{}'").format(base_name,str(passed_url).replace(prefix,"").strip())
                     sel.execute(query)
-                    get_info_conn.close()
                     rows = sel.fetchall()
                     message =rows[0][2]
                 return json.dumps({"status":message}),200,{'ContentType':'application/json'}  
