@@ -2,9 +2,6 @@ async function alterHeaders(req) {
 	//Request url
 	const url = new URL(req.request.url);
 	let FULL_URL = `https://${url.hostname}${url.pathname}`;
-	if (FULL_URL.includes(".html")) {
-		FULL_URL = FULL_URL.replace(".html", "");
-	}
 
 	//Auth headers
 	const AUTH_HEADERS = {
