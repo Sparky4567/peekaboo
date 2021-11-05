@@ -121,7 +121,6 @@ async function alterHeaders(req) {
 			});
 		}
 	} else {
-		//Making new request by url to the cache
 		let response = await fetch(req.request);
 
 		//Altering headers
@@ -147,7 +146,6 @@ async function alterHeaders(req) {
 		});
 
 		return modified;
-		//Yes? Oh ... Let us return the response then.
 	}
 }
 
