@@ -75,6 +75,7 @@ def get_url():
                     sel.execute(query)
                     rows = sel.fetchall()
                     message =rows[0][2]
+                    get_info_conn.close()
                 return json.dumps({"status":message}),200,{'ContentType':'application/json'}  
             else:
                 return json.dumps({"status":"You must set an url, bubs"}),200,{'ContentType':'application/json'}     
