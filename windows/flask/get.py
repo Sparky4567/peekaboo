@@ -33,7 +33,7 @@ def get_url():
             if(passed_url is not None):
                 data_conn = sqlite3.connect(base_name+db_prefix)
                 sel = data_conn.cursor()
-                query = "SELECT * FROM {} WHERE urlaskey = '{}'".format(str(base_name),passed_url)
+                query = "SELECT * FROM {} WHERE urlaskey = '{}'".format(str(base_name),str(passed_url).replace(".html","").strip())
                 sel.execute(query)
                 rows = sel.fetchall()
                 length = len(rows)
@@ -50,6 +50,8 @@ def get_url():
                         weboptions.add_argument("user-agent=[{}]".format(agent))
                         weboptions.add_argument("--headless")
                         weboptions.add_argument("--no-sandbox")
+
+
                         driver_path = webdriver_path
                         driver = webdriver.Chrome(driver_path,options=weboptions)
                         passed_url = prefix+passed_url
@@ -61,8 +63,12 @@ def get_url():
                         soup = BeautifulSoup(content, 'html.parser')
                         for script in soup(["script", "style","iframe","link"]):
                             script.extract()
+                        for tag in soup():
+                            for attribute in ["class", "id", "name", "style"]:
+                                del tag[attribute]
                         soup = str(soup).replace('&gt;','>').replace('&lt;','<')
                         driver.close()
+                        print(soup)
                         insert_query = "INSERT INTO {} (urlaskey,urlvalue) VALUES ('{}','{}')".format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip(), soup)
                         sel.execute(insert_query)
                         insert_conn.commit()
