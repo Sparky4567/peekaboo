@@ -108,6 +108,16 @@ print(encoded_string)
 
 Try this solution
 
+And please, please, do not forget the headers part
+
+headers={
+    "Authorization":"Basic {}".format(encoded_string)
+    "Check-Url":str("https://yoursite.domain/page.html").replace(".html","").strip()
+}
+
+r = requests.get("http//yourip:yourport/yourendpoint",headers=headers)
+
+Or change the basic request to the best solution that works for you
 
 ```
 
