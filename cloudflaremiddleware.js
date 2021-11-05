@@ -122,13 +122,7 @@ async function alterHeaders(req) {
 		}
 	} else {
 		//Making new request by url to the cache
-		const customcacheKey = `https://${url.hostname}${url.pathname}`;
-		let response = await fetch(req.request, {
-			cf: {
-				cacheTtlByStatus: { "200-299": 14400, 404: 1, "500-599": 0 },
-				cacheKey: customcacheKey,
-			},
-		});
+		let response = await fetch(req.request);
 
 		//Altering headers
 		let newHeaders = new Headers(response.headers);
@@ -146,23 +140,14 @@ async function alterHeaders(req) {
 		newHeaders.set("Cache-Control", "max-age=14400, s-maxage=14400");
 		newHeaders.set("Permissions-Policy", "geolocation=(), microphone=()");
 
-		//Initiating cache
-		let cache = caches.default;
-		let answer = await cache.match(customcacheKey);
-		//Do we have this in our cache? No? Let us put it in and return
-		//back the answer
-		if (!answer) {
-			let modified = new Response(response.body, {
-				status: response.status,
-				statusText: response.statusText,
-				headers: newHeaders,
-			});
-			req.waitUntil(cache.put(customcacheKey, modified.clone()));
-			return modified;
-			//Yes? Oh ... Let us return the response then.
-		} else {
-			return answer;
-		}
+		let modified = new Response(response.body, {
+			status: response.status,
+			statusText: response.statusText,
+			headers: newHeaders,
+		});
+
+		return modified;
+		//Yes? Oh ... Let us return the response then.
 	}
 }
 
