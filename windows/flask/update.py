@@ -33,7 +33,7 @@ def get_url():
             if(passed_url is not None):
                 data_conn = sqlite3.connect(base_name+db_prefix)
                 sel = data_conn.cursor()
-                query = "SELECT * FROM {} WHERE urlaskey = '{}'".format(str(base_name),passed_url)
+                query = "SELECT * FROM {} WHERE urlaskey = '{}'".format(str(base_name),passed_url.replace(".html","").strip())
                 sel.execute(query)
                 rows = sel.fetchall()
                 length = len(rows)
@@ -62,7 +62,7 @@ def get_url():
                             script.extract()
                         soup = str(soup).replace('&gt;','>').replace('&lt;','<')
                         driver.close()
-                        insert_query = "UPDATE {} SET urlvalue='{}' WHERE urlaskey='{}'".format(base_name, soup, str(passed_url).replace(prefix,""))
+                        insert_query = "UPDATE {} SET urlvalue='{}' WHERE urlaskey='{}'".format(base_name, soup, str(passed_url).replace(prefix,"").replace(".html","").strip())
                         sel.execute(insert_query)
                         insert_conn.commit()
                         insert_conn.close()

@@ -63,7 +63,7 @@ def get_url():
                             script.extract()
                         soup = str(soup).replace('&gt;','>').replace('&lt;','<')
                         driver.close()
-                        insert_query = "INSERT INTO {} (urlaskey,urlvalue) VALUES ('{}','{}')".format(base_name,str(passed_url).replace(prefix,""), soup)
+                        insert_query = "INSERT INTO {} (urlaskey,urlvalue) VALUES ('{}','{}')".format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip(), soup)
                         sel.execute(insert_query)
                         insert_conn.commit()
                         insert_conn.close()
@@ -72,7 +72,7 @@ def get_url():
                     auth_conn.close()
                     get_info_conn = sqlite3.connect(base_name+db_prefix)
                     sel = get_info_conn.cursor()
-                    query = ("SELECT * FROM {} WHERE urlaskey = '{}'").format(base_name,str(passed_url).replace(prefix,"").strip())
+                    query = ("SELECT * FROM {} WHERE urlaskey = '{}'").format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip())
                     sel.execute(query)
                     rows = sel.fetchall()
                     message =rows[0][2]
