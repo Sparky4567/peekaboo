@@ -92,6 +92,62 @@ cd into flask directory
 source venv/bin/activate
 python3 (or just py) peekaboo.py
 
+# How do I... Push all the links to Peekaboo?
+
+```
+pip install bs4
+pip install requests
+
+import requests
+import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
+
+class StaticGen:
+    def __init__(self):
+        self.headers = {
+            "User-Agent":"Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        }
+        self.url_to_get = "https://www.yoursite.eu/sitemap.xml"
+        self.rss_array=[]
+        self.url_array=[]
+
+
+    def get_starter(self):
+        r = requests.get(self.url_to_get,headers=self.headers)
+        soup = BeautifulSoup(r.text,"lxml")
+        locs = soup.find_all("loc")
+        for loc in locs:
+            self.rss_array.append(loc.text)
+
+    def get_urls(self, passed_url):
+        d = requests.get(passed_url,headers=self.headers)
+        linksoup = BeautifulSoup(d.text,"lxml")
+        linklocs = linksoup.find_all("loc")
+        for linkloc in linklocs:
+            self.url_array.append("{}".format(linkloc.text).replace("http","https"))
+
+
+    def push_links(self):
+        for rss in self.rss_array:
+            self.get_urls(rss)
+
+    def links(self):
+        for idx, single_url in enumerate(self.url_array):
+            headers={
+                "Authorization":"Basic yorsecretbase64key186481984126eiuaxsakxjklyadayadayada",
+                "Check-Url":str(single_url).replace(".html","").strip()
+            }
+            posturl = "http://yourip:yourport/get"
+            r = requests.get(posturl,headers=headers)
+            print("Status: {} | Url: {} Left: {}".format(r.status_code, single_url,len(self.url_array)-(idx+1)))
+
+requester = StaticGen()
+requester.get_starter()
+requester.push_links()
+requester.links()
+
+```
+
 # Contacts
 
 andrius@artefaktas.eu
