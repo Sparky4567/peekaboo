@@ -92,6 +92,25 @@ cd into flask directory
 source venv/bin/activate
 python3 (or just py) peekaboo.py
 
+# How do I... Authenticate myself in, huh?
+
+Well...
+
+```
+
+pip install basicauth
+
+import basicauth
+
+encoded_string = basicauth(username,password)
+
+print(encoded_string)
+
+Try this solution
+
+
+```
+
 # How do I... Push all the links to Peekaboo?
 
 ```
