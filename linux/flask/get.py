@@ -37,6 +37,7 @@ def get_url():
                 sel.execute(query)
                 rows = sel.fetchall()
                 length = len(rows)
+                data_conn.close()
                 message = ""
                 if(length==0):
                     message = False
