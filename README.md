@@ -13,9 +13,11 @@ peekaboo_agent="Peekaboo-Prerender" - Browser user agent
 webdriver_path=binary_path - Gets a chrome webdriver path, but you need to install Chrome
 
 peekaboo_admin="test" - username
+
 peekaboo_password="test" - password
 
 peekaboo_ip="127.0.0.1" - Your IP address (external or internal)
+
 peekaboo_port="8000" - Port you're gonna to run the Peekaboo on
 
 peek_prefix="https://" - Changes https:// to ... None, zero, gone or " ". You might want to change it to http://
@@ -51,6 +53,7 @@ and a file called "starter.sh"
 Just an example task if your server shuts down / restarts unexpectedly
 
 SHELL=/bin/bash
+
 @reboot cd /root/flask && ./starter.sh
 
 # If you loose your credentials
@@ -59,6 +62,12 @@ SHELL=/bin/bash
 start the venv and visit /ini path once. That is how the databases will recreate.
 You will loose the information stored there, but you will regain the access and everything
 will work again as expected.
+
+Or... cd into your folder
+
+ls
+
+sqlite3 yourbasename.db and change your username and password directly
 
 # Cloudflare middleware
 
