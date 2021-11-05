@@ -66,9 +66,9 @@ def get_url():
                         for tag in soup():
                             for attribute in ["class", "id", "name", "style"]:
                                 del tag[attribute]
-                        soup = str(soup).replace('&gt;','>').replace('&lt;','<')
+                            
+                        soup = str(soup).replace('&gt;','>').replace('&lt;','<').replace("'",'"')
                         driver.close()
-                        print(soup)
                         insert_query = "INSERT INTO {} (urlaskey,urlvalue) VALUES ('{}','{}')".format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip(), soup)
                         sel.execute(insert_query)
                         insert_conn.commit()
