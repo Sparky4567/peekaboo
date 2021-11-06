@@ -23,7 +23,7 @@ peekaboo_port="8000" - Port you're gonna to run the Peekaboo on
 peek_prefix="https://" - Changes https:// to ... None, zero, gone or " ". You might want to change it to http://
 if you are still running http
 
-# Recommended exmplary config settings for now
+# Recommended examplary config settings for now
 
 ```
 
