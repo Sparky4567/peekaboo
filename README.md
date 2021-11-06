@@ -23,6 +23,26 @@ peekaboo_port="8000" - Port you're gonna to run the Peekaboo on
 peek_prefix="https://" - Changes https:// to ... None, zero, gone or " ". You might want to change it to http://
 if you are still running http
 
+# Recommended exmplary config settings for now
+
+```
+
+from chromedriver_py import binary_path
+base_name="datastore"
+admin_base_name="admintable"
+peek_prefix="https://"
+peekaboo_admin="test"
+peekaboo_password="test"
+db_prefix=".db"
+peekaboo_agent="Peekaboo-Prerender"
+webdriver_path=binary_path
+peekaboo_ip="127.0.0.1"
+peekaboo_port="8000"
+eliminate_links = ["script", "iframe","link"] (You can add ,"style", if you want to experiment a little bit)
+eliminate_tags = ["class", "id", "name"] (You can add ,"style", if you want to experiment a little bit)
+
+```
+
 # Routes
 
 ## helper.py
