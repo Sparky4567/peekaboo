@@ -113,6 +113,20 @@ cd into flask directory
 source venv/bin/activate
 python3 (or just py) peekaboo.py
 
+# How do I... Upload venvs to the remote machine? What about SCP, huh? (Has nothing in common with SCP Foundation)
+
+Turn on the good oldie terminal, cmd, PowerShell or anything that supports scp
+
+```
+
+scp -r C:\Users\arty\Desktop\peekaboo\peekaboo\linux root@ipdaddress:/root/yadayada
+
+write your password, press enter and enjoy the uploading
+
+Putty: pscp -scp
+
+```
+
 # How do I... Authenticate myself in, huh?
 
 Well...
