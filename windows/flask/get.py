@@ -6,7 +6,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-from bs4 import BeautifulSoup
 from config import base_name
 from config import admin_base_name
 from config import peek_prefix

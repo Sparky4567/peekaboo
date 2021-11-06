@@ -6,12 +6,12 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-from bs4 import BeautifulSoup
 from config import base_name
 from config import admin_base_name
 from config import peek_prefix
 from config import db_prefix
 from plugins.seleniumplugin import Selenium_Plugin
+from plugins.updateplugin import Update_Plugin
 
 create_update_api = flask.Blueprint("create_update_api", __name__)
 
@@ -41,17 +41,11 @@ def get_url():
                     message = True
                     if(message==True):
                         auth_conn.close()
-                        insert_conn = sqlite3.connect(base_name+db_prefix)
-                        sel = insert_conn.cursor()
                         passed_url = prefix+passed_url
                         sc = Selenium_Plugin(passed_url)
                         soup = sc.selenium_ini()
-                        insert_query = "UPDATE {} SET urlvalue='{}' WHERE urlaskey='{}'".format(base_name, soup, str(passed_url).replace(prefix,"").replace(".html","").strip())
-                        sel.execute(insert_query)
-                        insert_conn.commit()
-                        insert_conn.close()
-                        message = "Inserted"
-                        return json.dumps({"status":message}),200,{'ContentType':'application/json'}  
+                        up = Update_Plugin(base_name,db_prefix,soup,str(passed_url))
+                        message=up.update_table()
                 else:
                     auth_conn.close()
                     message = "Insert error !"
