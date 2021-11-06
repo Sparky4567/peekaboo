@@ -185,7 +185,7 @@ class StaticGen:
         for idx, single_url in enumerate(self.url_array):
             headers={
                 "Authorization":"Basic yorsecretbase64key186481984126eiuaxsakxjklyadayadayada",
-                "Check-Url":str(single_url).replace(".html","").strip()
+                "Check-Url":str(single_url).strip()
             }
             posturl = "http://yourip:yourport/get"
             r = requests.get(posturl,headers=headers)
