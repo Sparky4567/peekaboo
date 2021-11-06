@@ -15,6 +15,7 @@ from config import webdriver_path
 from config import db_prefix
 from config import eliminate_links
 from config import eliminate_tags
+from config import selenium_timeout
 
 create_get_api = flask.Blueprint("create_get_api", __name__)
 
@@ -58,7 +59,7 @@ def get_url():
                         driver = webdriver.Chrome(driver_path,options=weboptions)
                         passed_url = prefix+passed_url
                         driver.get(passed_url)
-                        time.sleep(3)
+                        time.sleep(selenium_timeout)
                         insert_conn = sqlite3.connect(base_name+db_prefix)
                         sel = insert_conn.cursor()
                         content = driver.page_source
