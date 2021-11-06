@@ -225,4 +225,6 @@ requester.links()
 
 andrius@artefaktas.eu
 
-![heartandsoul](https://media.giphy.com/media/TilmLMmWrRYYHjLfub/giphy.gif)
+
+<img src="https://media.giphy.com/media/vzO0Vc8b2VBLi/giphy.gif" height="350" width="100%"/>
+
