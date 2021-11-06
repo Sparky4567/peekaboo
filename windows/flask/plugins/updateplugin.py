@@ -1,5 +1,4 @@
 import sqlite3
-import json
 from config import peek_prefix
 
 class Update_Plugin:
