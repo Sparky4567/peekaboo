@@ -4,7 +4,7 @@ Peekaboo prerender for ReactJS projects written purely in python (flask)
 
 # Ingredients
 
-- BeautifoulSoup
+- BeautifulSoup
 - Requests
 - Chromedriver-py
 - Flask
