@@ -115,14 +115,24 @@ cloudflaremiddleware.js is somewhere in the root directory of this project
 ## Windows
 
 cd into the flask directory
+
+```
+
 venv\Scripts\activate
 python3 (or just py) peekaboo.py
+
+```
 
 ## Linux
 
 cd into flask directory
+
+```
+
 source venv/bin/activate
 python3 (or just py) peekaboo.py
+
+```
 
 # How do I... Upload venvs to the remote machine? What about SCP, huh? (Has nothing in common with SCP Foundation)
 
