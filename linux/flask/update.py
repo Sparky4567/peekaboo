@@ -13,6 +13,8 @@ from config import peek_prefix
 from config import peekaboo_agent
 from config import webdriver_path
 from config import db_prefix
+from config import eliminate_links
+from config import eliminate_tags
 
 create_update_api = flask.Blueprint("create_update_api", __name__)
 
@@ -58,10 +60,10 @@ def get_url():
                         sel = insert_conn.cursor()
                         content = driver.page_source
                         soup = BeautifulSoup(content, 'html.parser')
-                        for script in soup(["script", "style","iframe","link"]):
+                        for script in soup(eliminate_links):
                             script.extract()
                         for tag in soup():
-                            for attribute in ["class", "id", "name", "style"]:
+                            for attribute in eliminate_tags:
                                 del tag[attribute]
                         soup = str(soup).replace('&gt;','>').replace('&lt;','<').replace("'",'"')
                         driver.close()
