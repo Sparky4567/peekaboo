@@ -1,6 +1,15 @@
 # Peekaboo
 
-Peekaboo prerender for reactjs projects written purely in python (flask)
+Peekaboo prerender for ReactJS projects written purely in python (flask)
+
+# Ingredients
+
+- BeautifoulSoup
+- Requests
+- Chromedriver-py
+- Flask
+- Selenium
+- Waitress server
 
 # Config
 
