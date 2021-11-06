@@ -10,12 +10,8 @@ from bs4 import BeautifulSoup
 from config import base_name
 from config import admin_base_name
 from config import peek_prefix
-from config import peekaboo_agent
-from config import webdriver_path
 from config import db_prefix
-from config import eliminate_links
-from config import eliminate_tags
-from config import selenium_timeout
+from plugins.seleniumplugin import Selenium_Plugin
 
 create_get_api = flask.Blueprint("create_get_api", __name__)
 
@@ -45,32 +41,12 @@ def get_url():
                 if(length==0):
                     message = False
                     if(message==False):
-                        auth_conn.close()
-                        agent = {
-                            "User-Agent":peekaboo_agent
-                        }
-                        weboptions = Options()
-                        weboptions.add_argument("user-agent=[{}]".format(agent))
-                        weboptions.add_argument("--headless")
-                        weboptions.add_argument("--no-sandbox")
-
-
-                        driver_path = webdriver_path
-                        driver = webdriver.Chrome(driver_path,options=weboptions)
+                        auth_conn.close() 
                         passed_url = prefix+passed_url
-                        driver.get(passed_url)
-                        time.sleep(selenium_timeout)
                         insert_conn = sqlite3.connect(base_name+db_prefix)
                         sel = insert_conn.cursor()
-                        content = driver.page_source
-                        soup = BeautifulSoup(content, 'html.parser')
-                        for script in soup(eliminate_links):
-                            script.extract()
-                        for tag in soup():
-                            for attribute in eliminate_tags:
-                                del tag[attribute]
-                        soup = str(soup).replace('&gt;','>').replace('&lt;','<').replace("'",'"')
-                        driver.close()
+                        sc = Selenium_Plugin(passed_url)
+                        soup = sc.selenium_ini()
                         insert_query = "INSERT INTO {} (urlaskey,urlvalue) VALUES ('{}','{}')".format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip(), soup)
                         sel.execute(insert_query)
                         insert_conn.commit()
