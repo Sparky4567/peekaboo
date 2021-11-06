@@ -51,6 +51,7 @@ peekaboo_ip="127.0.0.1"
 peekaboo_port="8000"
 eliminate_links = ["script", "iframe","link"] (You can add ,"style", if you want to experiment a little bit)
 eliminate_tags = ["class", "id", "name"] (You can add ,"style", if you want to experiment a little bit)
+selenium_timeout = 3 (timeout in seconds to wait until the page renders)
 
 ```
 
