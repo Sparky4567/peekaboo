@@ -48,6 +48,7 @@ eliminate_tags = ["class", "id", "name"] (You can add ,"style", if you want to e
 ## helper.py
 
 This endpoint spits out the authorization header needed for auth
+
 Disable helper.py routes when you decide to push it to production
 
 ## truncate.py
