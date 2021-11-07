@@ -22,6 +22,7 @@ class Base_Connector:
             res = cursor.fetchall()
             c.close()
             return res
+        c.close()
 
 
 
