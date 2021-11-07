@@ -1,6 +1,10 @@
 # Peekaboo
 
-Peekaboo prerender for ReactJS projects written purely in python (flask)
+Peekaboo prerender for ReactJS projects written purely in python (flask). It uses sqlite to store the rendered data.
+
+How did this idea come into my mind? Well, I did not find the tool that suited my personal needs anywhere. So, I created one myself,
+but it was way more better than I expected it to be. And that's why I decided to share the codebase with you all. Maybe, it will help to boost your
+creativity and personal projects, too.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K06VU8Z)
 
@@ -57,6 +61,14 @@ selenium_timeout = 3 (timeout in seconds to wait until the page renders)
 
 # Routes
 
+## peekaboo.py
+
+Greets you with {"Server says": "Peekaboo server is running smoothly..."} message
+
+## ini.py
+
+Visit it once or make a request once to /ini endpoint and you will see {"status": "Data and admin storage created !", "length": 1} message
+
 ## helper.py
 
 This endpoint spits out the authorization header needed for auth
@@ -65,16 +77,24 @@ Disable helper.py routes when you decide to push it to production
 
 ## truncate.py
 
-Clears the url table
+Clears the url table completely
 
 ## get.py
 
-Checks sqlite database if url already exists, if not, Peekaboo scrapes the webpage by url, but spits
-{"status":false} JSON message. It gives back the right data from the second time only.
+Checks sqlite database. If url does not exist, Peekaboo scrapes the webpage by url, but spits
+{"status":false} JSON message on the first try. It gives back the right data on the second time only.
 
 When it gets the right information, it gives back JSON object also. It looks like:
 
 {"status":"some html to give back"}
+
+## update.py
+
+Lets to update the current stored value.
+
+Key value -> url
+
+Data stored -> scraped html
 
 # Ubuntu issues
 
