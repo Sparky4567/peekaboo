@@ -2,7 +2,7 @@
 
 Peekaboo prerender for ReactJS projects written purely in python (flask). It uses sqlite to store the rendered data.
 
-How did this idea come into my mind? Well, I did not find the tool that suited my personal needs anywhere. So, I created one for my personal use,
+How did this idea come into my mind? Well, I did not find the tool that suited my personal needs anywhere. So, I created one myself,
 but it was way more better than I expected it to be. And that's why I decided to share the codebase with you all. Maybe, it will help to boost your
 creativity and personal projects, too.
 
