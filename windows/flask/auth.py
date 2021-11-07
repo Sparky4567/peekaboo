@@ -14,7 +14,7 @@ import time
 # REQUESTS TEST
 
 headers = basicauth.encode(peekaboo_admin,peekaboo_password)
-endpoint = "update"
+endpoint = "truncate"
 url_to_test = "https://www.artefaktas.eu/2021/10/pssst-nori-parodysiu-kaip-veikia-tikras.html"
 headers_to_pass = {
     "Authorization":headers,
