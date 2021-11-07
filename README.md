@@ -2,6 +2,8 @@
 
 Peekaboo prerender for ReactJS projects written purely in python (flask)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K06VU8Z)
+
 # Ingredients
 
 - BeautifulSoup
@@ -49,6 +51,7 @@ peekaboo_ip="127.0.0.1"
 peekaboo_port="8000"
 eliminate_links = ["script", "iframe","link"] (You can add ,"style", if you want to experiment a little bit)
 eliminate_tags = ["class", "id", "name"] (You can add ,"style", if you want to experiment a little bit)
+selenium_timeout = 3 (timeout in seconds to wait until the page renders)
 
 ```
 
@@ -113,14 +116,24 @@ cloudflaremiddleware.js is somewhere in the root directory of this project
 ## Windows
 
 cd into the flask directory
+
+```
+
 venv\Scripts\activate
 python3 (or just py) peekaboo.py
+
+```
 
 ## Linux
 
 cd into flask directory
+
+```
+
 source venv/bin/activate
 python3 (or just py) peekaboo.py
+
+```
 
 # How do I... Upload venvs to the remote machine? What about SCP, huh? (Has nothing in common with SCP Foundation)
 
@@ -225,4 +238,6 @@ requester.links()
 
 andrius@artefaktas.eu
 
-![heartandsoul](https://media.giphy.com/media/TilmLMmWrRYYHjLfub/giphy.gif)
+
+<img src="https://media.giphy.com/media/vzO0Vc8b2VBLi/giphy.gif" height="450" width="100%"/>
+
