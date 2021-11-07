@@ -93,6 +93,7 @@ When it gets the right information, it gives back JSON object also. It looks lik
 Lets to update the current stored value.
 
 Key value -> url
+
 Data stored -> scraped html
 
 # Ubuntu issues
