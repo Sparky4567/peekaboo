@@ -10,7 +10,7 @@ create_helper_api = Blueprint("create_helper_api", __name__)
 
 @create_helper_api.route("/helper")
 def listfunction():
-    if(helper_route_enabled == True):
+    if(helper_route_enabled == True and helper_route_enabled is not None):
         q = """SELECT * FROM {}""".format(admin_base_name)
         b = admin_base_name+db_prefix
         b_c = Base_Connector(b,q,True,False,False)
