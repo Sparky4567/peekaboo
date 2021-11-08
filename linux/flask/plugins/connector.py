@@ -1,4 +1,5 @@
 import sqlite3
+from functools import lru_cache
 class Base_Connector:
     def __init__(self,base_name,base_query,status_fetch_one,status_fetch_all,status_commit):
         self.base_name = base_name
@@ -6,7 +7,8 @@ class Base_Connector:
         self.status_fetch_one = status_fetch_one
         self.status_fetch_all = status_fetch_all
         self.status_commit = status_commit
-
+    
+    @lru_cache(maxsize=100)
     def connect_base(self):
         c = sqlite3.connect(self.base_name)
         cursor = c.cursor()

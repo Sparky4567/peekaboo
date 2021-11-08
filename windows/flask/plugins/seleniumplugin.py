@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from functools import lru_cache
 from bs4 import BeautifulSoup
 from config import webdriver_path
 from config import selenium_timeout
@@ -21,6 +22,7 @@ class Selenium_Plugin:
         self.passed_url = passed_url
         self.prefix = peek_prefix
 
+    @lru_cache(maxsize=100)
     def selenium_ini(self):
         driver_path = webdriver_path
         driver = webdriver.Chrome(driver_path,options=self.weboptions)
