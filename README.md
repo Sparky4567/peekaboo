@@ -11,6 +11,7 @@ creativity and personal projects, too.
 # Ingredients
 
 - BeautifulSoup
+- Basic Auth
 - Requests
 - Chromedriver-py
 - Flask
