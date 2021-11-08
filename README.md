@@ -60,6 +60,7 @@ peekaboo_port="8000"
 eliminate_links = ["script", "iframe","link"] (You can add ,"style", if you want to experiment a little bit)
 eliminate_tags = ["class", "id", "name"] (You can add ,"style", if you want to experiment a little bit)
 selenium_timeout = 3 (timeout in seconds to wait until the page renders)
+helper_route_enabled = True (Set to False to disable)
 
 ```
 
@@ -77,7 +78,9 @@ Visit it once or make a request once to /ini endpoint and you will see {"status"
 
 This endpoint spits out the authorization header needed for auth
 
-Disable helper.py routes when you decide to push it to production
+Disable helper.py route when you decide to push it to production
+
+(Since 2021-11-08 you can do it programatically)
 
 ## truncate.py
 
