@@ -17,6 +17,7 @@ creativity and personal projects, too.
 - Flask
 - Selenium
 - Waitress server
+- Sqlite
 
 # Config
 
