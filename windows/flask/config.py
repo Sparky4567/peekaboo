@@ -12,3 +12,4 @@ peekaboo_port="8000"
 eliminate_links = ["script", "style","iframe","link"]
 eliminate_tags = ["class", "id", "name", "style"]
 selenium_timeout = 3
+helper_route_enabled = True
