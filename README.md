@@ -18,6 +18,7 @@ creativity and personal projects, too.
 - Selenium
 - Waitress server
 - Sqlite
+- Isolated Virtual Python Environments
 - Lots of Python
 
 # Config
@@ -261,6 +262,4 @@ requester.links()
 
 andrius@artefaktas.eu
 
-
 <img src="https://media.giphy.com/media/vzO0Vc8b2VBLi/giphy.gif" height="450" width="100%"/>
-
