@@ -6,6 +6,8 @@ How did this idea come into my mind? Well, I did not find the tool that suited m
 but it was way more better than I expected it to be. And that's why I decided to share the codebase with you all. Maybe, it will help to boost your
 creativity and personal projects, too.
 
+[![wakatime](https://wakatime.com/badge/user/1fbc8005-b2d0-4f4f-93e8-f12d7d25d676/project/6bedca1c-3663-4f94-9501-040e7a50e0d9.svg)](https://wakatime.com/badge/user/1fbc8005-b2d0-4f4f-93e8-f12d7d25d676/project/6bedca1c-3663-4f94-9501-040e7a50e0d9)
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K06VU8Z)
 
 # Ingredients
