@@ -18,6 +18,7 @@ creativity and personal projects, too.
 - Selenium
 - Waitress server
 - Sqlite
+- Lots of Python
 
 # Config
 
