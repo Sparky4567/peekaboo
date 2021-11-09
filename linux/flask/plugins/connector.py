@@ -7,6 +7,7 @@ class Base_Connector:
         self.status_fetch_one = status_fetch_one
         self.status_fetch_all = status_fetch_all
         self.status_commit = status_commit
+        self.err_msg="Yo. Look at the error "
     
     @lru_cache(maxsize=100)
     def connect_base(self):
@@ -26,9 +27,10 @@ class Base_Connector:
                 c.close()
                 return res
         except sqlite3.Error as err:
-            print('Your logic is flawed, bubs. Look at this: ',err)
+            print(self.err_msg + err)
         finally:
-            c.close()
+            if(c):
+                c.close()
 
 
 

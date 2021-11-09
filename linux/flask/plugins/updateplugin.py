@@ -9,12 +9,19 @@ class Update_Plugin:
         self.db_prefix = prefix
         self.prefix = peek_prefix
         self.message = "Inserted"
+        self.err_msg="Yo. Look at the error "
     
     def update_table(self):
-        c = sqlite3.connect(self.base_name+self.db_prefix)
-        cursor = c.cursor()
-        insert_query = "UPDATE {} SET urlvalue='{}' WHERE urlaskey='{}'".format(self.base_name, self.data_to_store, str(self.key_value).replace(self.prefix,"").replace(".html","").strip())
-        cursor.execute(insert_query)
-        c.commit()
-        c.close()
-        return self.message
+        try:
+            c = sqlite3.connect(self.base_name+self.db_prefix)
+            cursor = c.cursor()
+            insert_query = "UPDATE {} SET urlvalue='{}' WHERE urlaskey='{}'".format(self.base_name, self.data_to_store, str(self.key_value).replace(self.prefix,"").replace(".html","").strip())
+            cursor.execute(insert_query)
+            c.commit()
+        except sqlite3.Error as err:
+            print(self.err_msg + err)
+        finally:
+            if(c):
+                c.close()
+                return self.message
+        
