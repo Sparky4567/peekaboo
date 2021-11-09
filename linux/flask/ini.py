@@ -7,13 +7,15 @@ from config import peekaboo_admin
 from config import peekaboo_password
 from config import db_prefix
 from plugins.connector import Base_Connector
-
+import hashlib
 create_table_api = Blueprint("create_table_api", __name__)
 
 @create_table_api.route("/ini")
 def start_function():
     peekadmin = peekaboo_admin
     peekpassword = peekaboo_password
+    peekadmin = hashlib.sha1(str(peekadmin).encode()).hexdigest()
+    peekpassword = hashlib.sha1(str(peekpassword).encode()).hexdigest()
     b_a = base_name+db_prefix 
     q_a = """CREATE TABLE IF NOT EXISTS {} (
     id integer PRIMARY KEY AUTOINCREMENT,
