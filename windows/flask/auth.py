@@ -10,11 +10,12 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 import time
-
+import hashlib
 # REQUESTS TEST
-
+peekaboo_admin=hashlib.sha1(str(peekaboo_admin).encode()).hexdigest()
+peekaboo_password=hashlib.sha1(str(peekaboo_password).encode()).hexdigest()
 headers = basicauth.encode(peekaboo_admin,peekaboo_password)
-endpoint = "helper"
+endpoint = "get"
 url_to_test = "https://www.artefaktas.eu/2021/10/pssst-nori-parodysiu-kaip-veikia-tikras.html"
 headers_to_pass = {
     "Authorization":headers,
