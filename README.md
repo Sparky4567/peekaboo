@@ -200,7 +200,7 @@ Putty: pscp -scp
 
 ```
 
-# How do I... Authenticate myself in, huh?
+# How do I... Authenticate myself in, huh? There is a special python file named auth.py dedicated especially for testing purposes
 
 Well...
 
@@ -210,7 +210,10 @@ pip install basicauth
 
 import basicauth
 
-encoded_string = basicauth(username,password)
+peekaboo_admin=hashlib.sha1(str(peekaboo_admin).encode()).hexdigest()
+peekaboo_password=hashlib.sha1(str(peekaboo_password).encode()).hexdigest()
+
+encoded_string = basicauth(peekaboo_admin,peekaboo_password)
 
 print(encoded_string)
 
