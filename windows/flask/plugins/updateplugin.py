@@ -14,6 +14,7 @@ class Update_Plugin:
     def update_table(self):
         try:
             c = sqlite3.connect(self.base_name+self.db_prefix)
+            c.execute('pragma journal_mode=wal')
             cursor = c.cursor()
             insert_query = "UPDATE {} SET urlvalue='{}' WHERE urlaskey='{}'".format(self.base_name, self.data_to_store, str(self.key_value).replace(self.prefix,"").replace(".html","").strip())
             cursor.execute(insert_query)

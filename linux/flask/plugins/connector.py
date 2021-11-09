@@ -13,6 +13,7 @@ class Base_Connector:
     def connect_base(self):
         try:
             c = sqlite3.connect(self.base_name)
+            c.execute('pragma journal_mode=wal')
             cursor = c.cursor()
             cursor.execute(self.base_query)
             if(self.status_commit==True):
