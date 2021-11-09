@@ -1,6 +1,6 @@
 # Peekaboo
 
-Peekaboo prerender for ReactJS projects written purely in python (flask). It uses sqlite to store the rendered data.
+Peekaboo prerender for ReactJS projects written purely in python (flask). It uses SQlite to store the rendered data.
 
 How did this idea come into my mind? Well, I did not find the tool that suited my personal needs anywhere. So, I created one myself,
 but it was way more better than I expected it to be. And that's why I decided to share the codebase with you all. Maybe, it will help to boost your
@@ -19,7 +19,7 @@ creativity and personal projects, too.
 - Flask
 - Selenium
 - Waitress server
-- Sqlite
+- SQlite
 - Isolated Virtual Python Environments
 - Lots of Python
 
@@ -90,12 +90,34 @@ Clears the url table completely
 
 ## get.py
 
-Checks sqlite database. If url does not exist, Peekaboo scrapes the webpage by url, but spits
+Checks SQlite database. If url does not exist, Peekaboo scrapes the webpage by url, but spits
 {"status":false} JSON message on the first try. It gives back the right data on the second time only.
 
 When it gets the right information, it gives back JSON object also. It looks like:
 
 {"status":"some html to give back"}
+
+You can check SQlite stored data directly like this:
+
+```
+
+sqlite3 datastore.db
+SQLite version 3.31.1 2020-01-27 19:55:54
+Enter ".help" for usage hints.
+sqlite> SELECT urlaskey FROM datastore ORDER BY id ASC limit 10
+   ...>
+www.artefaktas.eu/
+www.artefaktas.eu/2021/11/ar-issprendziau-savo-react-seo-problema
+www.artefaktas.eu/2021/10/ar-issprendziau-savo-react-seo-problema
+www.artefaktas.eu/2021/10/pssst-nori-parodysiu-kaip-veikia-tikras
+www.artefaktas.eu/2021/10/ar-as-susikuriau-tik-tok-react
+www.artefaktas.eu/2021/10/bet-react-nepalaiko-twitter-embed
+www.artefaktas.eu/2021/10/pora-react-komponentu
+www.artefaktas.eu/2021/10/juk-zadejau-nauju-blogger-temu-pirmoji
+www.artefaktas.eu/2021/10/cloudflare-cache-api-atsako-antrasciu
+www.artefaktas.eu/2021/10/kaip-sukuriau-twitter-siena-savo
+
+```
 
 ## update.py
 
