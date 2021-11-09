@@ -10,21 +10,25 @@ class Base_Connector:
     
     @lru_cache(maxsize=100)
     def connect_base(self):
-        c = sqlite3.connect(self.base_name)
-        cursor = c.cursor()
-        cursor.execute(self.base_query)
-        if(self.status_commit==True):
-            c.commit()
+        try:
+            c = sqlite3.connect(self.base_name)
+            cursor = c.cursor()
+            cursor.execute(self.base_query)
+            if(self.status_commit==True):
+                c.commit()
+                c.close()
+            if(self.status_fetch_one==True):
+                res = cursor.fetchone()
+                c.close()
+                return res
+            if(self.status_fetch_all==True):
+                res = cursor.fetchall()
+                c.close()
+                return res
+        except sqlite3.Error as err:
+            print('Your logic is flawed, bubs. Look at this: ',err)
+        finally:
             c.close()
-        if(self.status_fetch_one==True):
-            res = cursor.fetchone()
-            c.close()
-            return res
-        if(self.status_fetch_all==True):
-            res = cursor.fetchall()
-            c.close()
-            return res
-        c.close()
 
 
 
