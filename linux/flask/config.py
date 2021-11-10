@@ -13,3 +13,9 @@ eliminate_links = ["script", "style","iframe","link"]
 eliminate_tags = ["class", "id", "name", "style"]
 selenium_timeout = 3
 helper_route_enabled = True
+
+#Redis
+redis_support_enabled = True
+redis_host = "localhost"
+redis_port = 6379
+redis_db = 0

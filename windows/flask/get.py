@@ -8,6 +8,8 @@ from config import peek_prefix
 from config import db_prefix
 from plugins.seleniumplugin import Selenium_Plugin
 from plugins.connector import Base_Connector
+from plugins.redisplugin import Redis_Plugin
+from config import redis_support_enabled
 
 create_get_api = flask.Blueprint("create_get_api", __name__)
 
@@ -43,11 +45,26 @@ def get_url():
                         b_c.connect_base()
                         return json.dumps({"status":message}),200,{'ContentType':'application/json'}  
                 else:
-                    b = base_name+db_prefix
-                    q = ("SELECT * FROM {} WHERE urlaskey = '{}'").format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip())
-                    b_c = Base_Connector(b,q,False,True,False)
-                    rows = b_c.connect_base()
-                    message =rows[0][2]
+                    if(redis_support_enabled is True and redis_support_enabled is not None):
+                        r = Redis_Plugin(str(passed_url).replace(prefix,"").replace(".html","").strip(),None)
+                        res = r.return_redis_cache()
+                        if(res is not False):
+                            rows = res
+                            message = rows
+                        else: 
+                            b = base_name+db_prefix
+                            q = ("SELECT * FROM {} WHERE urlaskey = '{}'").format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip())
+                            b_c = Base_Connector(b,q,False,True,False)
+                            rows = b_c.connect_base()
+                            message =rows[0][2]
+                            new_temp_red = Redis_Plugin(str(passed_url).replace(prefix,"").replace(".html","").strip(),message)
+                            new_temp_red.insert_into_cache()
+                    else:
+                        b = base_name+db_prefix
+                        q = ("SELECT * FROM {} WHERE urlaskey = '{}'").format(base_name,str(passed_url).replace(prefix,"").replace(".html","").strip())
+                        b_c = Base_Connector(b,q,False,True,False)
+                        rows = b_c.connect_base()
+                        message =rows[0][2]
                 return json.dumps({"status":message}),200,{'ContentType':'application/json'}  
             else:
                 return json.dumps({"status":"You must set an url, bubs"}),200,{'ContentType':'application/json'}     
