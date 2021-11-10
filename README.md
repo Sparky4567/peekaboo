@@ -64,6 +64,12 @@ eliminate_tags = ["class", "id", "name"] (You can add ,"style", if you want to e
 selenium_timeout = 3 (timeout in seconds to wait until the page renders)
 helper_route_enabled = True (Set to False to disable)
 
+#Redis
+redis_support_enabled = True
+redis_host = "localhost"
+redis_port = 6379
+redis_db = 0
+
 ```
 
 # Routes
