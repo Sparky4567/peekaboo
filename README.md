@@ -22,6 +22,7 @@ creativity and personal projects, too.
 - SQlite
 - Isolated Virtual Python Environments
 - Lots of Python
+- Redis Support (Py-redis)
 
 # Config
 
