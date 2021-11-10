@@ -350,6 +350,28 @@ requester.links()
 
 ```
 
+# How do I ... Know that Redis is working?
+
+Assuming that you already installed the Redis package, changed your config, restarted the server and made some requests to store the data...
+
+Use Redis CLI to check it out.
+
+KEYS (pattern, you can use an asterisk like I did) - lists all the stored keys
+
+get (keyid) - prints stored key value (in our case HTML)
+
+```
+
+root@altiusday:~# redis-cli
+127.0.0.1:6379> KEYS *
+1) "www.artefaktas.eu/2021/10/pora-react-komponentu"
+2) "www.artefaktas.eu/"
+3) "www.artefaktas.eu/2021/11/flask-per-https-ubuntu-apache"
+4) "www.artefaktas.eu/2021/11/reikia-programinio-kodo-google"
+127.0.0.1:6379> get www.artefaktas.eu/2021/10/pora-react-komponentu
+
+```
+
 # Contacts
 
 andrius@artefaktas.eu
